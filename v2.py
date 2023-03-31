@@ -46,6 +46,29 @@ class Graph:
                     return True
         return False
 
+    def find_cycles(self):
+        """find cycle in graph and return the cycle"""
+        cycles = []
+        visited = set()
+        stack = set()
+
+        def dfs(node):
+            visited.add(node)
+            stack.add(node)
+            for neighbor in self.adj_list[node]:
+                if neighbor not in visited:
+                    dfs(neighbor)
+                elif neighbor in stack:
+                    cycle = list(stack)[list(stack).index(neighbor):]
+                    cycles.append(cycle)
+            stack.remove(node)
+
+        for node in self.adj_list:
+            if node not in visited:
+                dfs(node)
+
+        return cycles
+
 
 def visualize_graph(args, relations):
     g = Digraph()
@@ -108,6 +131,13 @@ def grounded_semantic(graph: Graph):
     # print("admissible arguments: ", admissible_args)
     # print("defeated arguments: ", not_admissible_args)
     return admissible_args
+
+
+def grounded(graph: Graph):
+    if graph.is_cyclic() == 1:
+        print("Graph contains cycle")
+    else:
+        print("Graph doesn't contain cycle")
 
 
 if __name__ == '__main__':
