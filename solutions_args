@@ -1,0 +1,32 @@
+graph parent {
+	{
+		graph [rankdir=LR]
+		a [label=a]
+		b [label=b]
+		c [label=c]
+		a -- b
+		b -- a
+		b -- c
+	}
+	{
+		graph [rankdir=LR]
+		a [label=a fillcolor="#ff000042" style=filled]
+		a [label=a]
+		b [label=b]
+		c [label=c fillcolor="#ff000042" style=filled]
+		c [label=c]
+		a -- b
+		b -- a
+		b -- c
+	}
+	{
+		graph [rankdir=LR]
+		a [label=a]
+		b [label=b fillcolor="#ff000042" style=filled]
+		b [label=b]
+		c [label=c]
+		a -- b
+		b -- a
+		b -- c
+	}
+}
